@@ -54,6 +54,7 @@ session_start();
 if(!isset($_SESSION["senha"]) && !isset($_SESSION["login"]))
 {
 	header("Location: index.html");
+	
 	exit;
 	
 	
@@ -64,7 +65,34 @@ else
 
 
 	
+	if(($_SESSION["acesso"] == 'MAP' ))
+
+
+  {
+
+	header("Location: dashboard_map.php");
+
+  }
+
+  if(($_SESSION["acesso"] == 'NOC' ))
+
+
+  {
+
 	header("Location: dashboard.php");
+
+  }
+
+  if(($_SESSION["acesso"] == 'CABO' ))
+
+
+  {
+
+	header("Location: dashboard.php");
+
+  }
+
+
 }
 
 
