@@ -101,7 +101,8 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
         <th>CLIENTE</th>
         <th>OBS</th>
         <th>DATA</th>
-          <th>DELETAR</th>
+        <th>DELETAR</th>
+        <th>EDITAR</th>
 
       
        
@@ -134,6 +135,7 @@ if (mysql_num_rows($sql) > 0)
  <td> <?php echo $dado ["obs"];  ?></td>
   <td> <?php echo $dado ["data"];  ?></td>
   <td><?php if($_SESSION["acesso"] == 'CABO' ){?> <a href='del.php?id=<?php echo $id ?>'>DELETAR</a><?php } ?></td>
+  <td><?php if($_SESSION["acesso"] == 'CABO' ){?> <a href='editar_cabos.php?id=<?php echo $id ?>'>EDITAR</a><?php } ?></td>
 
 
 <?php } } }?>
