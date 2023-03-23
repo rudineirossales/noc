@@ -40,7 +40,7 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 <script type="text/javascript">
 function saidasuccessfully()
 {
-  setTimeout("window.location='cabo.php'",3000);
+  setTimeout("window.location='inventario.php'",3000);
   
   
 }
@@ -71,13 +71,14 @@ function saidasuccessfully()
 
 <?php
 
-$cabo =$_POST['cabo'];
-
-$origem =$_POST['origem'];
-$rack_origem =$_POST['rack_destino'];
-$destino =$_POST['destino'];
-$rack_destino =$_POST['rack_destino'];
-$cliente =$_POST['cliente'];
+$patch_a =$_POST['patch_a'];
+$porta_a =$_POST['porta_a'];
+$id_cross =$_POST['id_cross'];
+$datahall_b =$_POST['datahall_b'];
+$rack_b =$_POST['rack_b'];
+$cliente_b =$_POST['cliente_b'];
+$patch_b =$_POST['patch_b'];
+$porta_b =$_POST['porta_b'];
 $midia =$_POST['midia'];
 $obs =$_POST['obs'];
 
@@ -86,16 +87,15 @@ $obs =$_POST['obs'];
 
 
 
+$query = "insert into inventario (patch_A,porta_A,midia,id_cross,datahall_B,cliente_B,rack_B,patch_B,porta_B,obs,data)";
 
-
-$query = "insert into cabos (cabo,origem,destino,midia,cliente,obs,data,rack_origem,rack_destino)";
-
-$query.= "values ('$cabo','$origem','$destino','$midia','$cliente','$obs',NOW(),'$rack_origem','$rack_destino')";
+$query.= "values ('$patch_a','$porta_a','$midia','$id_cross','$datahall_b','$cliente_b','$rack_b','$patch_b','$porta_b','$obs',NOW())";
 
 
 
 
 $sql = mysql_query($query);
+
 
 
 if($sql )

@@ -1,22 +1,25 @@
-<?php  include "coon.php";   include "dados_grafico.php";  ?>
-
 
 <?php 
+         include "coon.php"; 
+      
+         session_start();
+
+         if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"])  )
+            {
+                 header("Location: index.html");
+                  exit;
+            }
 
 
-session_start();
-
-if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
-{
-  header("Location: index.html");
-  exit;
-  
-  
-}
 
 
 
- 
+
+            
+            
+
+
+ 
 
 
 ?>
@@ -25,353 +28,181 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-<link rel="icon" href="img/icon.ico">
-   <script type="text/javascript" src="loader.js"></script>
-    <script type="text/javascript" src="loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Mês', 'Saída', 'Entrada', ''],
-          ['JAN', <?php echo $jan_sai ?>, <?php echo $JAN_ENT ?>, 0],
-          ['FEV', <?php echo $FEV_SAI ?>,<?php echo $FEV_ENT ?>, 0],
-          ['MAR', <?php echo $MAR_SAI ?>, <?php echo $MAR_ENT ?>, 0],
-          ['ABR', <?php echo $ABR_SAI ?>, <?php echo $ABR_ENT ?>, 0],
-          ['MAI', <?php echo $MAI_SAI ?>, <?php echo $MAI_ENT ?>, 0],
-          ['JUN', <?php echo $JUN_SAI ?>, <?php echo $JUN_ENT ?>, 0],
-          ['JUL', <?php echo $JUL_SAI ?>, <?php echo $JUL_ENT ?>, 0],
-          ['AGO', <?php echo $AGO_SAI ?>, <?php echo $AGO_ENT ?>, 0],
-          ['SET', <?php echo $SET_SAI ?>, <?php echo $SET_ENT ?>, 0],
-          ['OUT', <?php echo $OUT_SAI ?>, <?php echo $OUT_ENT ?>, 0],
-          ['NOV', <?php echo $NOV_SAI ?>, <?php echo $NOV_ENT ?>, 0],
-          ['DEZ', <?php echo $DEZ_SAI ?>, <?php echo $DEZ_ENT ?>, 0]
-        ]);
-
-        var options = {
-          chart: {
-            title: 'Entrada / Saída',
-            subtitle: 'Controle de registros  <?php echo date('Y') ?>',
-          }
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-    </script>
-
-    <script type="text/javascript" src="loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawStuff);
-
-      function drawStuff() {
-        var data = new google.visualization.arrayToDataTable([
-          ['Move', 'quantidade'],
-          ["Frame", <?php echo $FRAME ?>],
-          ["Fitas", <?php echo $FITAS ?>],
-          ["Servidores", <?php echo $SERVIDORES ?>],
-          ["Switch", <?php echo $SWITCH ?>],
-          ["Cabos", <?php echo $CABOS ?>],
-          ['Outros', <?php echo $OUTROS ?>]
-        ]);
-
-        var options = {
-          width: 800,
-          legend: { position: 'none' },
-          chart: {
-            title: 'Contagem de movimentação de equipamentos <?php echo date('Y') ?>',
-            subtitle: '' },
-          axes: {
-            x: {
-              0: { side: 'top', label: 'Equipamentos'} // Top x-axis.
-            }
-          },
-          bar: { groupWidth: "90%" }
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
-        // Convert the Classic options to Material options.
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      };
-    </script>
-
-    <script type="text/javascript" src="loader.js"></script>
-    <script type="text/javascript">
-google.charts.load('current', {'packages':['bar']});
-  
-      google.charts.setOnLoadCallback(drawStuff2);
-
-      function drawStuff2() {
-        var data = new google.visualization.arrayToDataTable([
-          ['Move', 'Quantidade'],
-          ["JAN", <?php echo $JAN ?>],
-          ["FEV", <?php echo $FEV ?>],
-          ["MAR", <?php echo $MAR ?>],
-          ["ABR", <?php echo $ABR ?>],
-          ['MAI', <?php echo $MAI ?>],
-          ['JUN', <?php echo $JUN ?>],
-          ['JUL', <?php echo $JUL ?>],
-          ['AGO', <?php echo $AGO ?>],
-          ['SET', <?php echo $SETE ?>],
-          ['OUT', <?php echo $OUTU ?>],
-          ['NOV', <?php echo $NOV ?>],
-          ['DEZ', <?php echo $DEZ ?>]
-        ]);
-
-        var options = {
-          width: 800,
-          legend: { position: 'none' },
-          chart: {
-            title: 'Cabos',
-            subtitle: '' },
-          axes: {
-            x: {
-              0: { side: 'top', label: 'Cabeamento passado <?php echo date('Y') ?>'} // Top x-axis.
-            }
-          },
-          bar: { groupWidth: "90%" }
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('top_x_div2'));
-        // Convert the Classic options to Material options.
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      };
-
-
-     
-
-</script>
-
-
-<script type="text/javascript" src="loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load("current", {packages:["corechart"]});
-      google.charts.setOnLoadCallback(drawChart);
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Colocation',    <?php echo $COLOCATION ?>],
-          ['Hosting',    <?php echo $HOSTING ?>],
-          ['Engenharia',    <?php echo $ENGENHARIA ?>]
-        ]);
-
-        var options = {
-          title: 'Colocation / Massive / engenharia <?php echo date('Y') ?> ',
-          is3D: true,
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
-        chart.draw(data, options);
-      }
-    </script>
+  <head>
 
 
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-
+    <link rel="icon" href="img/apa.png">
+    <meta name="description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <!-- Twitter meta-->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@pratikborsadiya">
+    <meta property="twitter:creator" content="@pratikborsadiya">
+    <!-- Open Graph Meta-->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Vali Admin">
+    <meta property="og:title" content="Vali - Free Bootstrap 4 admin theme">
+    <meta property="og:url" content="http://pratikborsadiya.in/blog/vali-admin">
+    <meta property="og:image" content="http://pratikborsadiya.in/blog/vali-admin/hero-social.png">
+    <meta property="og:description" content="Vali is a responsive and free admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.">
+    <title>ApaNet</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>CONTROLE DE EQP</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
-
-    <!-- Morris Charts CSS -->
-    <link href="css/plugins/morris.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- ///////PASTA BOOTSTRAP ////////////////////-->
-   
-  <link href="css/style.css" rel="stylesheet">
-
-
- <script src="jquery-min.js"></script>
- <script src="jquery-ui.js"></script>
- <script src="jquery-ui.min.js"></script>
-<script src="js/jquery.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-
-    <!-- ///////PASTA BOOTSTRAP ////////////////////-->
-<meta http-equiv="refresh" content="60; url=dashboard.php">
-</head>
-
-<body >
-
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                
-            </div>
-
-        
-            <!-- Top Menu Items -->
-            <ul class="nav navbar-right top-nav">
-                <a class="navbar-brand" href="#" > <?php echo $_SESSION["nome"]?></a>
-              
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>   <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                       
-                      <!--
-                        <li>
-                            <a href="modifica_senha.php"><i class="fa fa-fw fa-gear"></i> Trocar senha</a> 
-                        </li> 
-                        <li class="divider"></li> -->
-                        <li>
-                            <a href="Logout.php"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                  <?php if($_SESSION["acesso"] == 'NOC' ){?>
-                   <li class="dropdown">
-
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-scale">  EQUIPAMENTOS</span>
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body class="app sidebar-mini rtl">
+    <!-- Navbar-->
+    <header class="app-header"><a class="app-header__logo" href="dashboard.php">ApaNet</a><br>
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a> <br>
+      <!-- Navbar Right Menu-->
+      <ul class="app-nav">
+       
+        <!--Notification Menu-->
+       
+        <!-- User Menu-->
+        <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i></a>
+          <ul class="dropdown-menu settings-menu dropdown-menu-right">
+            
+            <li><a class="dropdown-item" href="logout.php"><i class="fa fa-sign-out fa-lg"></i> Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </header>
+    <!-- Sidebar menu-->
+    <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+    <aside class="app-sidebar">
+      <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" style="width:38px; height:40px;" src="img/Apanet.jpg" alt="User Image">
+        <div>
+          <p class="app-sidebar__user-name"><?php echo $_SESSION['nome'];?> </p>
           
-          <li style="background:black;"><a href="cad_eqp.php"><span class="glyphicon glyphicon-pencil"> CADASTRO</a></li></span> 
-          <li style="background:black;"><a href="pesq_eqp.php"><span class="glyphicon glyphicon-calendar"> BUSCA PERÍODO</a></li>
-          <li style="background:black;"><a href="pesq_cliente.php"><span class="glyphicon glyphicon-search"> BUSCA CLIENTE/ID</a></li>
-          <li style="background:black;"><a href="editar.php"><span class="glyphicon glyphicon-search"> EDITAR</a></li>
-                 
-                
+        </div>
+      </div>
+      <ul class="app-menu">
+        <li><a class="app-menu__item active" href="dashboard.php"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
         
-        </ul>
-      </li>
-      <?php } ?>
-      <li class="dropdown">
-
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-transfer"> CABEAMENTOS
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-        <?php if($_SESSION["acesso"] == 'CABO' ){?>
-          <li style="background:black;"><a href="cabo.php"><span class="glyphicon glyphicon-pencil"> CADASTRO</a></li></span> <?php } ?>
-          <li style="background:black;"><a href="pesq_per.php"><span class="glyphicon glyphicon-calendar"> BUSCA PERÍODO</a></li></span>
-          <li style="background:black;"><a href="pesq_nome.php"><span class="glyphicon glyphicon-search"> BUSCA CLIENTE</a></li></span>
-          <li style="background:black;"><a href="pesq_cabo.php"><span class="glyphicon glyphicon-zoom-in"> BUSCA Nº</a></li></span>
-        
-                 
-                
-        
-        </ul>
-
-
-
-      </li>
-       <?php if($_SESSION["acesso"] == 'NOC' ){?>
-       <li class="dropdown">
-
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-barcode"> Nº SÉRIE</span>
-        <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-        
-          <li style="background:black;"><a href="scan/cad_eqp.php"><span class="glyphicon glyphicon-pencil"> CADASTRO</a></li> </span>
-          <li style="background:black;"><a href="scan/buscascan_1.php"><span class="glyphicon glyphicon-search"> BUSCA</a></li></span>
+        <ul class="treeview-menu">
+            <li><a class="treeview-item" href="bootstrap-components.html"><i class="icon fa fa-circle-o"></i> Bootstrap Elements</a></li>
+            <li><a class="treeview-item" href="https://fontawesome.com/v4.7.0/icons/" target="_blank" rel="noopener"><i class="icon fa fa-circle-o"></i> Font Icons</a></li>
+            <li><a class="treeview-item" href="ui-cards.html"><i class="icon fa fa-circle-o"></i> Cards</a></li>
+            <li><a class="treeview-item" href="widgets.html"><i class="icon fa fa-circle-o"></i> Widgets</a></li>
+          </ul>
+        </li>
         
         
-                 
-                
-        
-        </ul>
-
-
-
-      </li>
-     
-      <?php } ?>
-               
-                   
-                   
-                </ul>
-               
-
-
-            </div>
-            <!-- /.navbar-collapse -->
-        </nav>
-
-        <div id="page-wrapper">
-
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div  class="row" >
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            Dashboard <small>Controle</small>
-
-                        </h1>
-                       
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i > <h4>Movimentações do dia: <marquee onmousedown="this.stop();" onmouseup="this.start();" > <?php $sql46 = mysql_query ("SELECT protocolo,empresa,tipo_reg from PRINCIPAL where day(data) = day(NOW()) AND  YEAR(data) = YEAR(NOW()) and month(data) = month(NOW()) ;" );
- while ($dado = mysql_fetch_assoc($sql46)){
-
-
-  echo 'EQUIPAMENTO: Protocolo: '.$protocolo = $dado["protocolo"];
-  echo ' Empresa: '.  $empresa = $dado["empresa"];
-  echo ' Tipo: '. $tipo = $dado["tipo_reg"].' / ';
-
-} ?><br> <?php $sql47 = mysql_query ("SELECT cabo,cliente  from cabos where day(data) = day(NOW()) AND  YEAR(data) = YEAR(NOW()) and month(data) = month(NOW()) ;" );
- while ($dado = mysql_fetch_assoc($sql47)){
-
-
-  echo 'CABEAMENTO: Cabo: '. $cabo = $dado["cabo"];
-  echo ' Cliente: '. $cliente = $dado["cliente"].' / ';
-
-
-} ?></marquee></h4></i>
-                            </li>
-                        </ol>
-
-                    </div>
-                </div>
-                <!-- /.row -->
-
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Mapeamento</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
            
-                <!-- /.row -->
+          
+            <li><a class="treeview-item" href="map1.php"><i class="icon fa fa-circle-o"></i> Cadastro</a></li>
+            <li><a class="treeview-item" href="teste.php"><i class="icon fa fa-circle-o"></i> Busca Geral</a></li>
+            <li><a class="treeview-item" href="pesquisaPeriodo.php"><i class="icon fa fa-circle-o"></i> Busca Período</a></li>
+           
+            <li><a class="treeview-item" href="editar_map.php"><i class="icon fa fa-circle-o"></i> Deletar/Editar</a></li>
 
-                <div id="columnchart_material" style="width: 800px; height: 500px;"></div><br><br>
-                <div id="top_x_div" style="width: 800px; height: 600px;"></div><br><br><br>
-                <div id="top_x_div2" style="width: 400px; height: 300px;"></div><br><br><br>
-                <div id="piechart_3d" style="width: 900px; height: 500px;"></div>
+            
+          </ul>
+          
+        </li>
+
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Map.elétrico</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+           
+          
+            <li><a class="treeview-item" href="map2.php"><i class="icon fa fa-circle-o"></i> Cadastro</a></li>
+            <li><a class="treeview-item" href="teste_ele.php"><i class="icon fa fa-circle-o"></i> Busca Geral</a></li>
+            <li><a class="treeview-item" href="editar_map2.php"><i class="icon fa fa-circle-o"></i> Deletar/Editar</a></li>
+           
+            
+
+            
+          </ul>
+          
+        </li>
+
+        <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-th-list"></i><span class="app-menu__label">Chamados</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+          <ul class="treeview-menu">
+           
+          
+            <li><a class="treeview-item" href="cad_chamado.php"><i class="icon fa fa-circle-o"></i> Cadastro</a></li>
+            <li><a class="treeview-item" href="pesq_per_chamado.php"><i class="icon fa fa-circle-o"></i> Busca Período</a></li>
+            <li><a class="treeview-item" href="pesq_ritm.php"><i class="icon fa fa-circle-o"></i> Busca RITM</a></li>
+           
+            
+
+            
+          </ul>
+          
+        </li>
+        <li><a class="treeview-item" href="pdf/Calhas_Cyber.pdf" target=”_blank”><i class="icon fa fa-circle-o"></i> Layout de Calhas </a></li>
+        <li><a class="treeview-item" href="pdf/Novoid.pdf" target=”_blank”><i class="icon fa fa-circle-o"></i> Id OI/Elea </a></li>
+        
+            
+    </aside>
+    <main class="app-content">
+      <div class="app-title">
+        <div>
+          <h1><i class="fa fa-dashboard"></i> Dashboard </h1>
+          <p></p>
+        </div>
+        <ul class="app-breadcrumb breadcrumb">
+          <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+          <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+        </ul>
+      </div>
+      <!-- 
+      <div class="row">
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+            <div class="info">
+              <h4>TESTE</h4>
+              <p><b>5</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
+            <div class="info">
+              <h4>TESTE</h4>
+              <p><b>25</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+            <div class="info">
+              <h4>TESTE</h4>
+              <p><b>10</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
+            <div class="info">
+              <h4>TESTE</h4>
+              <p><b>500</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      -->
+      <div class="row " >
+        <div class="col-md-12">
+          <div class="tile">
+          <h3 class="tile-title">Relatório</h3>
+
+
+          <?php
+
+
+date_default_timezone_set('America/Sao_Paulo');
+
+
+
+$data_atual = date("Y-m-d");
 
 
 
@@ -383,13 +214,195 @@ google.charts.load('current', {'packages':['bar']});
 
 
 
-                <!-- /.row -->
+ 
+$iphone = strpos($_SERVER['HTTP_USER_AGENT'],"iPhone");
+$ipad = strpos($_SERVER['HTTP_USER_AGENT'],"iPad");
+$android = strpos($_SERVER['HTTP_USER_AGENT'],"Android");
+$palmpre = strpos($_SERVER['HTTP_USER_AGENT'],"webOS");
+$berry = strpos($_SERVER['HTTP_USER_AGENT'],"BlackBerry");
+$ipod = strpos($_SERVER['HTTP_USER_AGENT'],"iPod");
+$symbian = strpos($_SERVER['HTTP_USER_AGENT'],"Symbian");
+$windowsphone = strpos($_SERVER['HTTP_USER_AGENT'],"Windows Phone");
 
+if ($iphone || $ipad || $android || $palmpre || $ipod || $berry || $symbian || $windowsphone == true) {
+  
+     $dispositivo = "Mobile";
+    // moblie
 
+?>
+             <?php }else {  $dispositivo = "Computador";?>  <?php } ?>
 
-               
-              <p style="margin-right:9%; font-size: 10px;"><strong>© Copyright Desenvolvimento Rudinei Rossales  </strong></p>
+              
+            
+  
+            
+  
+             <iframe width="1000" height="1500" src="https://lookerstudio.google.com/embed/reporting/56b972bf-715c-4467-97e8-87ab1e43a8b9/page/w62GD" frameborder="0" style="border:0" allowfullscreen></iframe>
+          
+        </div>
 
-</body>
+        
+        <!-- 
+        <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Em desenvolvimento</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+              <canvas class="embed-responsive-item" id="pieChartDemo"></canvas> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Em desenvolvimento</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+              <canvas class="embed-responsive-item" id="lineChartDemo2"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Em desenvolvimento</h3>
+            <div class="embed-responsive embed-responsive-16by9">
+              <canvas class="embed-responsive-item" id="pieChartDemo2"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="col-md-6">
+          <div class="tile">
+            <h3 class="tile-title">Em desenvolvimento</h3>
+            <p>Em desenvolvimento</p>
+            <p>Em desenvolvimento</p>
+            <p>Em desenvolvimento </p>
+          </div>
+        </div>
+        -->
+      </div>
+    </main>
+    <!-- Essential javascripts for application to work-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="js/plugins/pace.min.js"></script>
+    <!-- Page specific javascripts-->
+    <script type="text/javascript" src="js/plugins/chart.js"></script>
+    <script type="text/javascript">
+      var data = {
+      	labels: ["GA1", "GA2", "GA3", "GA4", "GA5"],
+      	datasets: [
+      		{
+      			label: "Setembro",
+      			fillColor: "rgba(220,220,220,0.2)",
+      			strokeColor: "rgba(220,220,220,1)",
+      			pointColor: "rgba(220,220,220,1)",
+      			pointStrokeColor: "#fff",
+      			pointHighlightFill: "#fff",
+      			pointHighlightStroke: "rgba(220,220,220,1)",
+      			data: [65, 59, 80, 81, 56]
+      		},
+      		{
+      			label: "Agosto",
+      			fillColor: "rgba(151,187,205,0.2)",
+      			strokeColor: "rgba(151,187,205,1)",
+      			pointColor: "rgba(151,187,205,1)",
+      			pointStrokeColor: "#fff",
+      			pointHighlightFill: "#fff",
+      			pointHighlightStroke: "rgba(151,187,205,1)",
+      			data: [28, 48, 40, 19, 86]
+      		}
+      	]
+      };
+      var pdata = [
+      	{
+      		value: 300,
+      		color: "#46BFBD",
+      		highlight: "#5AD3D1",
+      		label: "Complete"
+      	},
+      	{
+      		value: 50,
+      		color:"#F7464A",
+      		highlight: "#FF5A5E",
+      		label: "In-Progress"
+      	}
+      ]
+      
+      var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+      var lineChart = new Chart(ctxl).Line(data);
+      
+      var ctxp = $("#pieChartDemo").get(0).getContext("2d");
+      var pieChart = new Chart(ctxp).Pie(pdata);
+    </script>
+    <!-- Google analytics script-->
+    <script type="text/javascript">
+      if(document.location.hostname == 'pratikborsadiya.in') {
+      	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      	ga('create', 'UA-72504830-1', 'auto');
+      	ga('send', 'pageview');
+      }
+    </script>
 
+<script type="text/javascript">
+  var data = {
+    labels: ["January", "February", "March", "April", "May"],
+    datasets: [
+      {
+        label: "My First dataset",
+        fillColor: "rgba(220,220,220,0.2)",
+        strokeColor: "rgba(220,220,220,1)",
+        pointColor: "rgba(220,220,220,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(220,220,220,1)",
+        data: [65, 59, 80, 81, 56]
+      },
+      {
+        label: "My Second dataset",
+        fillColor: "rgba(151,187,205,0.2)",
+        strokeColor: "rgba(151,187,205,1)",
+        pointColor: "rgba(151,187,205,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(151,187,205,1)",
+        data: [28, 48, 40, 19, 86]
+      }
+    ]
+  };
+  var pdata = [
+    {
+      value: 300,
+      color: "#46BFBD",
+      highlight: "#5AD3D1",
+      label: "Complete"
+    },
+    {
+      value: 50,
+      color:"#F7464A",
+      highlight: "#FF5A5E",
+      label: "In-Progress"
+    }
+  ]
+  
+  var ctxl = $("#lineChartDemo2").get(0).getContext("2d");
+  var lineChart = new Chart(ctxl).Line(data);
+  
+  var ctxp = $("#pieChartDemo2").get(0).getContext("2d");
+  var pieChart = new Chart(ctxp).Pie(pdata);
+</script>
+
+    
+
+    
+  </body>
 </html>
+
+
+
+

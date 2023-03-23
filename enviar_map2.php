@@ -40,7 +40,7 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 <script type="text/javascript">
 function saidasuccessfully()
 {
-  setTimeout("window.location='cabo.php'",3000);
+  setTimeout("window.location='map2.php'",3000);
   
   
 }
@@ -71,14 +71,12 @@ function saidasuccessfully()
 
 <?php
 
-$cabo =$_POST['cabo'];
-
-$origem =$_POST['origem'];
-$rack_origem =$_POST['rack_destino'];
-$destino =$_POST['destino'];
-$rack_destino =$_POST['rack_destino'];
-$cliente =$_POST['cliente'];
-$midia =$_POST['midia'];
+$rack =$_POST['rack'];
+$quadro =$_POST['quadro'];
+$ccto =$_POST['ccto'];
+$tensao =$_POST['tensao'];
+$amp =$_POST['amp'];
+$ocupado =$_POST['ocupado'];
 $obs =$_POST['obs'];
 
 
@@ -86,11 +84,9 @@ $obs =$_POST['obs'];
 
 
 
+$query = "insert into map2 (rack,quadro,ccto,tensao,amp,ocupado,obs,data)";
 
-
-$query = "insert into cabos (cabo,origem,destino,midia,cliente,obs,data,rack_origem,rack_destino)";
-
-$query.= "values ('$cabo','$origem','$destino','$midia','$cliente','$obs',NOW(),'$rack_origem','$rack_destino')";
+$query.= "values ('$rack','$quadro','$ccto','$tensao','$amp','$ocupado','$obs',NOW())";
 
 
 

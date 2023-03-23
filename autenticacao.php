@@ -9,10 +9,24 @@ include "coon.php";
 
 <head>
 
+
+    <!-- ///////PASTA BOOTSTRAP ////////////////////-->
+   
+		<link href="css/style.css" rel="stylesheet">
+
+
+<script src="jquery-min.js"></script>
+<script src="jquery-ui.js"></script>
+<script src="jquery-ui.min.js"></script>
+<script src="js/jquery.js"></script>
+ <script src="js/bootstrap.min.js"></script>
+
+	 <!-- ///////PASTA BOOTSTRAP ////////////////////-->
+
 <script type="text/javascript">
 function loginsuccessfully()
 {
-	setTimeout("window.location='paine.php'",3000);
+	setTimeout("window.location='paine.php'",4000);
 	
 	
 }
@@ -31,7 +45,7 @@ function loginfailed()
 
 
 
-  <link rel="icon" href="img/logo_oi.png">
+  <link rel="icon" href="img/apa.jpg">
 <meta charset="UTF-8"/>
 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
@@ -40,7 +54,7 @@ function loginfailed()
 
 
 
-<body>
+<body">
 
 
 
@@ -65,15 +79,16 @@ if($row > 0  )
 	
 	while ($linha =  mysql_fetch_assoc($sql) 	)
 	{
-	$nome = $linha['nome'];
-	$login = $linha['login'];
-	$id = $linha['id'];
+		$nome = $linha['nome'];
+		$login = $linha['login'];
+		$id = $linha['id'];
 		$senha = $linha['senha'];
 		$acesso = $linha['acesso'];
     
-	$uf = $linha['uf'];
+	
 	
 	}
+	
 	session_start();
 	
 	$_SESSION['senha']=$senha;
@@ -83,7 +98,15 @@ if($row > 0  )
 	$_SESSION['nome'] =$nome;
 	$_SESSION['acesso'] =$acesso;
 	
-	echo "<h2 align='center'>Oi $nome! Você foi logado (a) com sucesso!<h2> <br> <img src='img/oi.png' style=' width: 200px; height:200px; padding-left:40%; '  > ";
+	
+	
+
+
+
+
+	echo "<div style='background:rgba(1,1,1,0.5); padding:3px; text-align:center;'><span style='font-size:20px;'>Oi $nome! Você foi logado (a) com sucesso!</span></div>";
+
+	
 
 	 echo "<script>loginsuccessfully()</script>";
 
@@ -91,7 +114,9 @@ if($row > 0  )
 }
 else
 {
-	echo "<h2 align='center'>Senha de usuário inválida<h2>";
+	echo "<br> <div style='background:rgba(1,1,1,0.5); padding:3px; text-align:center;'><span style='font-size:20px;'>Senha ou Login inválidos</span></div>";
+
+	
 	echo "<script>loginfailed()</script>";
 	
 }

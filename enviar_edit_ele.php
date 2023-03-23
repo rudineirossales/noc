@@ -5,7 +5,7 @@
 <script type="text/javascript">
 function saidasuccessfully()
 {
-	setTimeout("window.location='pesq_nome.php'",7000);
+	setTimeout("window.location='editar_ele.'",7000);
 	
 	
 }
@@ -47,7 +47,7 @@ include "coon.php";
 <script type="text/javascript">
 function saidasuccessfully()
 {
-	setTimeout("window.location='pesq_nome.php'",3000);
+	setTimeout("window.location='editar_ele.php'",3000);
 	
 	
 }
@@ -78,16 +78,14 @@ function saidasuccessfully()
 
 <?php
 
-$id=$_POST['id'];
-
-$cabo =$_POST['cabo'];
-$origem =$_POST['origem'];
-$rack_origem =$_POST['rack_origem'];
-$rack_destino =$_POST['rack_destino'];
-$cliente =$_POST['cliente'];
-$destino =$_POST['destino']; 
-$obs =$_POST['obs'];
-
+            $ccto = $_POST["ccto"];
+            $rack = $_POST["rack"];
+            $quadro = $_POST["quadro"];
+            $tensao = $_POST["tensao"];
+            $amp  = $_POST["amp"];
+            $obs = $_POST["obs"];
+            
+            
 
 
 
@@ -99,7 +97,8 @@ $obs =$_POST['obs'];
 
 
 
-$query = "update cabos set cabo='$cabo',origem='$origem',destino='$destino',obs='$obs',cliente='$cliente',rack_destino='$rack_destino',rack_origem='$rack_origem' where id = '$id'";
+
+$query = "update map2 set rack='$rack',quadro='$quadro',tensao='$tensao',amp='$amp',obs='$obs' where ccto = '$ccto'";
 
 
 

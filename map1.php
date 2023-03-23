@@ -1,4 +1,4 @@
-﻿
+
 <?php
 include "coon.php";
 
@@ -25,7 +25,8 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 
 
 
-<link rel="icon" href="img/icon.ico">
+<link rel="icon" href="img/apa.png
+">
 
 
 
@@ -71,6 +72,9 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
  
 
   
+
+
+
   <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="jquery.maskedinput.js"></script>
 <script type="text/javascript" src="validacao.js"></script>
@@ -91,7 +95,7 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 
 <p  style="font-size: 12px;"><i><strong>© Desenvolvimento Rudinei Rossales  </strong></i></p>
 
-  <div class="navbar navbar-inverse navbar">
+  <div class="navbar navbar-inverse navbar" style="background-image: url('img/buss.jpg');>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -113,51 +117,78 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 
         </div>
     </div>
-<div class="container">
+<div>
 
 
-<div class="row content">
+<div class="row content" style="margin-left:30%">
 
 
-    <div class="col-sm-10 "  >
+    <div class="col-sm-6"  >
     
     <div id="teste">
-  <form class="form" role="form" name="seachform" method="post" action="enviar_cabo.php " enctype="multipart/form-data">
-
+  <form class="form" role="form" name="seachform" method="post" action="enviar_map1.php " enctype="multipart/form-data">
+  <div class="form-group">
+     <label for="pwd">CABO:</label>
+      <input type="text" class="form-control"  name="cabo" required>
+    </div>
+    <div class="form-group">
+     <label for="pwd">ID CROSS:</label>
+      <input type="text" class="form-control"  required name="idcross" 
+      >
+    </div>
     <div class="form-group">
 
-       <label for="email">CABO:</label>
-      <input type="text" class="form-control"  name="cabo" required >
+       <label for="email">LOCAL:</label>
+      <input type="text" class="form-control"  name="local" required >
     </div>
  
        <div class="form-group">
-     <label for="pwd">EQUIPAMENTO ORIGEM:</label>
-      <input type="text" class="form-control"  name="origem" required>
+     <label for="pwd">FILA:</label>
+      <input type="text" class="form-control"  name="fila" required>
  
     </div>
-
+      
+     
     <div class="form-group">
      <label for="pwd">RACK ORIGEM:</label>
-      <input type="text" class="form-control"  name="rack_origem" required>
- 
+      <input type="text" class="form-control"  name="rack_ori" required>
     </div>
-
+    <div class="form-group">
+     <label for="pwd">EQUIPAMENTO ORIGEM:</label>
+      <input type="text" class="form-control"  name="eqp_ori" required>
+    </div>
+    <div class="form-group">
+     <label for="pwd">PORTA ORIGEM:</label>
+      <input type="text" class="form-control"  name="porta_ori" required>
+    </div>
     
-       <div class="form-group">
-     <label for="pwd">EQUIPAMENTO DESTINO:</label>
-      <input type="text" class="form-control"  name="destino" required>
+    <div class="form-group">
+     <label for="pwd">CP:</label>
+      <input type="text" class="form-control"  name="cp" required>
     </div>
-
+    
+    <div class="form-group">
+     <label for="pwd">PP:</label>
+      <input type="text" class="form-control"  name="pp" required>
+    </div>
     <div class="form-group">
      <label for="pwd">RACK DESTINO:</label>
-      <input type="text" class="form-control"  name="rack_destino" required>
- 
+      <input type="text" class="form-control"  name="rack_dest" required>
     </div>
-      <div class="form-group">
-     <label for="pwd">CLIENTE:</label>
-      <input type="text" class="form-control"  name="cliente" required>
+    <div class="form-group">
+     <label for="pwd">EQUIPAMENTO DESTINO:</label>
+      <input type="text" class="form-control"  name="eqp_dest" required>
     </div>
-   <div class="form-group">
+    <div class="form-group">
+     <label for="pwd">PORTA DESTINO:</label>
+      <input type="text" class="form-control"  name="porta_dest" required>
+    </div>
+    
+    <div class="form-group">
+     <label for="pwd">SERVIDOR / CLIENTE:</label>
+      <input type="text" class="form-control"  name="servidor" required>
+    </div>
+    <div class="form-group">
      <label for="email">MÍDIA:</label>  
         <select class="form-control "  name="midia">
             <option value="RG45">  RG45 </option>
@@ -166,6 +197,10 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 
         </select>
 
+    </div>
+    <div class="form-group">
+    <label for="email">MANOBRA: </label>
+  <textarea class="form-control" rows="5" id="manobra" name="manobra" maxlength="300" placeholder="Máximo 300 caracteres"></textarea>
     </div>
 
        <div class="form-group">

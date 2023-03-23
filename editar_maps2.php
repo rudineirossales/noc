@@ -12,7 +12,7 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 
 $id =$_GET['id'];
 
-            $sql = mysql_query ("select * from cabos where id = '$id'" );
+            $sql = mysql_query ("select * from map1 where cabo = '$id'" );
 
             $row = mysql_num_rows($sql);
 
@@ -22,12 +22,22 @@ $id =$_GET['id'];
     {
          while ($dado = mysql_fetch_assoc($sql))
          {
+            $local = $dado["local"];
+            $fila = $dado["fila"];
+            $eqp_origem = $dado["eqp_origem"];
+            $porta_ori = $dado["porta_ori"];
+            $rack_ori  = $dado["rack_ori"];
+            $cp = $dado["cp"];
+            $porta_dest = $dado["porta_dest"];
+            $idcross = $dado["idcross"];
             $cabo = $dado["cabo"];
-            $origem = $dado["origem"];
-            $destino = $dado["destino"];
-            $rack_origem = $dado["rack_origem"];
-            $rack_destino  = $dado["rack_destino"];
-            $cliente = $dado["cliente"];
+            $pp = $dado["pp"];
+            $rack_dest = $dado["rack_dest"];
+            $manobra = $dado["manobra"];  
+            $servidor  = $dado["servidor"];
+            $eqp_dest = $dado["eqp_dest"];
+            $midia = $dado["midia"];
+            $idcross = $dado["idcross"];
             $obs = $dado["obs"];
             
             
@@ -96,7 +106,7 @@ function loginsuccessfully()
 <body>
   <p  style="font-size: 12px;"><i><strong>© Copyright Serede S/A Desenvolvimento Rudinei Rossales  </strong></i></p>
 <div class="navbar navbar-inverse navbar">
-        <div class="container">
+        <div >
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -121,7 +131,7 @@ function loginsuccessfully()
         </div>
     </div>
 
-    <div class="container" >
+    <div  >
       <div class="col-md-5 col-md-offset-3" >
       
  <span><strong>EDITAR CABOS</strong></span>
@@ -134,42 +144,78 @@ function loginsuccessfully()
 
   </ul>
   <br>
-  <img src="img/loading.gif" id="loading" style="display:none; width:50px;height:50px;" />  
-  <form class="form" role="form" id="form" name="seachform" method="post" action="enviar_edit_cabos.php " >
+  
+  <form class="form" role="form" id="form" name="seachform" method="post" action="enviar_edit_map.php " >
 
   <input type="hidden" class="form-control"   value="<?php echo $id;?>" name="id"    required >
-
+  
   <div class="form-group">
 
-       <label for="email">CABO:</label>
-       <input type="text" class="form-control"   value="<?php echo $cabo;?>" name="cabo"    required >
+<label for="email">CABO:</label>
+<input type="text" class="form-control"   value="<?php echo $cabo;?>" readonly name="cabo"    required >
+</div>
+<div class="form-group">
+
+<label for="email">ID CROSS:</label>
+<input type="text" class="form-control"   value="<?php echo $idcross;?>" readonly name="idcross"    required >
+</div>
+  <div class="form-group">
+
+       <label for="email">LOCAL:</label>
+       <input type="text" class="form-control"   value="<?php echo $local;?>" name="local"    required >
 </div>
 
  <div class="form-group">
 
-       <label for="email">ORIGEM:</label>
-       <input type="text" class="form-control"   value="<?php echo $origem;?>" name="origem"    required >
+       <label for="email">FILA:</label>
+       <input type="text" class="form-control"   value="<?php echo $fila ;?>" name="fila"    required >
 </div>
 
 <div class="form-group">
 
-<label for="email">RACK ORIGEM:</label>
-<input type="text" class="form-control"   value="<?php echo $rack_origem;?>" name="rack_origem"    required >
+
+<label for="email">RACK DE ORIGEM:</label>
+<input type="text" class="form-control"   value="<?php echo $rack_ori;?>" name="rack_ori"    required >
 </div>
 <div class="form-group">
 
-<label for="email">EQUIPAMENTO DESTINO:</label>
-<input type="text" class="form-control"   value="<?php echo $destino;?>" name="destino"    required >
+<label for="email">EQUIPAMENTO ORIGEM:</label>
+<input type="text" class="form-control"   value="<?php echo $eqp_origem;?>" name="eqp_ori"    required >
 </div>
+<div class="form-group">
+
+<label for="email">PORTA ORIGEM:</label>
+<input type="text" class="form-control"   value="<?php echo $porta_ori;?>" name="porta_ori"    required >
+</div>
+
 <div class="form-group">
 
 <label for="email">RACK DESTINO:</label>
-<input type="text" class="form-control"   value="<?php echo $rack_destino;?>" name="rack_destino"    required >
+<input type="text" class="form-control"   value="<?php echo $rack_dest;?>" name="rack_dest"    required >
 </div>
 <div class="form-group">
-
-<label for="email">CLIENTE::</label>
-<input type="text" class="form-control"   value="<?php echo $cliente;?>" name="cliente"    required >
+<label for="email">EQUIPAMENTO DESTINO::</label>
+<input type="text" class="form-control"   value="<?php echo $eqp_dest;?>" name="eqp_dest"    required >
+</div>
+<div class="form-group">
+<label for="email">PORTA DESTINO:</label>
+<input type="text" class="form-control"   value="<?php echo $porta_dest;?>" name="porta_dest"    required >
+</div>
+<div class="form-group">
+<label for="email">CP:</label>
+<input type="text" class="form-control"   value="<?php echo $cp;?>" name="cp"    required >
+</div>
+<div class="form-group">
+<label for="email">PP:</label>
+<input type="text" class="form-control"   value="<?php echo $pp;?>" name="pp"    required >
+</div>
+<div class="form-group">
+<label for="email">CLIENTE:</label>
+<input type="text" class="form-control"   value="<?php echo $servidor;?>" name="servidor"    required >
+</div>
+<div class="form-group">
+<label for="exampleTextarea">MANOBRA</label>
+<textarea class="form-control" maxlength="500" id="exampleTextarea" rows="3" name="manobra"><?php echo $manobra;?></textarea>
 </div>
 <div class="form-group">
 <label for="exampleTextarea">OBS</label>
@@ -183,9 +229,10 @@ function loginsuccessfully()
   
 </div>
 
-
+ 
 
 
 </body>
 </html>
+
 

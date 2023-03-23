@@ -12,7 +12,7 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 
 $id =$_GET['id'];
 
-            $sql = mysql_query ("select * from cabos where id = '$id'" );
+            $sql = mysql_query ("select * from map2 where ccto = '$id'" );
 
             $row = mysql_num_rows($sql);
 
@@ -22,13 +22,13 @@ $id =$_GET['id'];
     {
          while ($dado = mysql_fetch_assoc($sql))
          {
-            $cabo = $dado["cabo"];
-            $origem = $dado["origem"];
-            $destino = $dado["destino"];
-            $rack_origem = $dado["rack_origem"];
-            $rack_destino  = $dado["rack_destino"];
-            $cliente = $dado["cliente"];
+            $ccto = $dado["ccto"];
+            $rack = $dado["rack"];
+            $quadro = $dado["quadro"];
+            $tensao = $dado["tensao"];
+            $amp  = $dado["amp"];
             $obs = $dado["obs"];
+           
             
             
           }
@@ -96,7 +96,7 @@ function loginsuccessfully()
 <body>
   <p  style="font-size: 12px;"><i><strong>© Copyright Serede S/A Desenvolvimento Rudinei Rossales  </strong></i></p>
 <div class="navbar navbar-inverse navbar">
-        <div class="container">
+        <div >
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -121,7 +121,7 @@ function loginsuccessfully()
         </div>
     </div>
 
-    <div class="container" >
+    <div  >
       <div class="col-md-5 col-md-offset-3" >
       
  <span><strong>EDITAR CABOS</strong></span>
@@ -135,44 +135,43 @@ function loginsuccessfully()
   </ul>
   <br>
   <img src="img/loading.gif" id="loading" style="display:none; width:50px;height:50px;" />  
-  <form class="form" role="form" id="form" name="seachform" method="post" action="enviar_edit_cabos.php " >
+  <form class="form" role="form" id="form" name="seachform" method="post" action="enviar_edit_ele.php " >
 
   <input type="hidden" class="form-control"   value="<?php echo $id;?>" name="id"    required >
-
+  
   <div class="form-group">
 
-       <label for="email">CABO:</label>
-       <input type="text" class="form-control"   value="<?php echo $cabo;?>" name="cabo"    required >
+<label for="email">CIRCUITO:</label>
+<input type="text" class="form-control"   value="<?php echo $id;?>" readonly name="ccto"    required >
+</div>
+<div class="form-group">
+
+<label for="email">RACK:</label>
+<input type="text" class="form-control"   value="<?php echo $rack;?>"  name="rack"    required >
+</div>
+  <div class="form-group">
+
+       <label for="email">QUADRO:</label>
+       <input type="text" class="form-control"   value="<?php echo $quadro;?>" name="quadro"    required >
 </div>
 
  <div class="form-group">
 
-       <label for="email">ORIGEM:</label>
-       <input type="text" class="form-control"   value="<?php echo $origem;?>" name="origem"    required >
+       <label for="email">TENSÃO:</label>
+       <input type="text" class="form-control"   value="<?php echo $tensao ;?>" name="tensao"    required >
 </div>
 
 <div class="form-group">
 
-<label for="email">RACK ORIGEM:</label>
-<input type="text" class="form-control"   value="<?php echo $rack_origem;?>" name="rack_origem"    required >
+
+<label for="email">AMPERAGEM:</label>
+<input type="text" class="form-control"   value="<?php echo $amp;?>" name="amp"    required >
 </div>
 <div class="form-group">
 
-<label for="email">EQUIPAMENTO DESTINO:</label>
-<input type="text" class="form-control"   value="<?php echo $destino;?>" name="destino"    required >
-</div>
-<div class="form-group">
 
-<label for="email">RACK DESTINO:</label>
-<input type="text" class="form-control"   value="<?php echo $rack_destino;?>" name="rack_destino"    required >
-</div>
 <div class="form-group">
-
-<label for="email">CLIENTE::</label>
-<input type="text" class="form-control"   value="<?php echo $cliente;?>" name="cliente"    required >
-</div>
-<div class="form-group">
-<label for="exampleTextarea">OBS</label>
+<label for="exampleTextarea">OBSERVAÇÃO</label>
 <textarea class="form-control" maxlength="500" id="exampleTextarea" rows="3" name="obs"><?php echo $obs;?></textarea>
 </div>
 
@@ -183,9 +182,10 @@ function loginsuccessfully()
   
 </div>
 
-
+ 
 
 
 </body>
 </html>
+
 

@@ -10,9 +10,9 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
   
 }
 
-$id =$_GET['id'];
+$ritm =$_GET['ritm'];
 
-            $sql = mysql_query ("select * from cabos where id = '$id'" );
+            $sql = mysql_query ("select * from chamado where ritm = '$ritm'" );
 
             $row = mysql_num_rows($sql);
 
@@ -22,13 +22,8 @@ $id =$_GET['id'];
     {
          while ($dado = mysql_fetch_assoc($sql))
          {
-            $cabo = $dado["cabo"];
-            $origem = $dado["origem"];
-            $destino = $dado["destino"];
-            $rack_origem = $dado["rack_origem"];
-            $rack_destino  = $dado["rack_destino"];
-            $cliente = $dado["cliente"];
-            $obs = $dado["obs"];
+            
+            $descricao = $dado["descricao"];
             
             
           }
@@ -85,8 +80,8 @@ function loginsuccessfully()
 
   
 
-  <link rel="icon" href="img/key.png">
-  <title>CADASTRO </title>
+  <link rel="icon" href="img/apa.png">
+  <title>ApaNet </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -96,7 +91,7 @@ function loginsuccessfully()
 <body>
   <p  style="font-size: 12px;"><i><strong>© Copyright Serede S/A Desenvolvimento Rudinei Rossales  </strong></i></p>
 <div class="navbar navbar-inverse navbar">
-        <div class="container">
+        <div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
@@ -121,10 +116,10 @@ function loginsuccessfully()
         </div>
     </div>
 
-    <div class="container" >
-      <div class="col-md-5 col-md-offset-3" >
+    <div >
+      <div class="col-md-8 col-md-offset-2" >
       
- <span><strong>EDITAR CABOS</strong></span>
+ <span><strong></strong></span>
   <ul class="nav nav-tabs">
     
   
@@ -135,57 +130,28 @@ function loginsuccessfully()
   </ul>
   <br>
   <img src="img/loading.gif" id="loading" style="display:none; width:50px;height:50px;" />  
-  <form class="form" role="form" id="form" name="seachform" method="post" action="enviar_edit_cabos.php " >
+  <form class="form">
 
-  <input type="hidden" class="form-control"   value="<?php echo $id;?>" name="id"    required >
 
-  <div class="form-group">
-
-       <label for="email">CABO:</label>
-       <input type="text" class="form-control"   value="<?php echo $cabo;?>" name="cabo"    required >
-</div>
-
- <div class="form-group">
-
-       <label for="email">ORIGEM:</label>
-       <input type="text" class="form-control"   value="<?php echo $origem;?>" name="origem"    required >
-</div>
+  
 
 <div class="form-group">
-
-<label for="email">RACK ORIGEM:</label>
-<input type="text" class="form-control"   value="<?php echo $rack_origem;?>" name="rack_origem"    required >
-</div>
-<div class="form-group">
-
-<label for="email">EQUIPAMENTO DESTINO:</label>
-<input type="text" class="form-control"   value="<?php echo $destino;?>" name="destino"    required >
-</div>
-<div class="form-group">
-
-<label for="email">RACK DESTINO:</label>
-<input type="text" class="form-control"   value="<?php echo $rack_destino;?>" name="rack_destino"    required >
-</div>
-<div class="form-group">
-
-<label for="email">CLIENTE::</label>
-<input type="text" class="form-control"   value="<?php echo $cliente;?>" name="cliente"    required >
-</div>
-<div class="form-group">
-<label for="exampleTextarea">OBS</label>
-<textarea class="form-control" maxlength="500" id="exampleTextarea" rows="3" name="obs"><?php echo $obs;?></textarea>
+<label for="exampleTextarea">Descrição:</label>
+<textarea class="form-control" maxlength="1000" readonly id="exampleTextarea" rows="20" name="descricao"><?php echo $descricao;?></textarea>
 </div>
 
-<button type="submit" value="Enviar" class="btn btn-danger" id="enviar"> <strong>Enviar</strong> </button>
+
    
      
   </form>
   
 </div>
 
-
+ 
 
 
 </body>
 </html>
+
+
 

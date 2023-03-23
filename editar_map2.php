@@ -24,17 +24,17 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 <link rel="icon" href="img/logo_oi.ico">
 
 <script language="Javascript">
-function confirmacao(id) {
+function confirmacao(ccto) {
      var resposta = confirm("Deseja remover esse registro?");
  
      if (resposta == true) {
-          window.location.href = "del.php?id="+id;
+          window.location.href = "del_ele.php?ccto="+ccto;
      }
 }
 </script>
 
 
-  <link rel="icon" href="img/key.png">
+  <link rel="icon" href="img/apa.png">
   <title>SISTEMA CYBER</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,7 +58,7 @@ function confirmacao(id) {
 </head>
 <body>
    <p  style="font-size: 12px;"><i><strong>© Desenvolvimento Rudinei Rossales  </strong></i></p>
-<div class="navbar navbar-inverse navbar">
+<div class="navbar navbar-inverse navbar" style="background-image: url('img/buss.jpg');>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -84,13 +84,13 @@ function confirmacao(id) {
 
 <br>
 
-<div class="container">
+<div>
 
   
-  <form class="form-inline" role="form"  method="POST" action="pesq_cabo.php"  style="margin-left:10%;">
+  <form class="form-inline" role="form"  method="POST" action="editar_map2.php"  style="margin-left:10%;">
     <div class="form-group">
-      <label for="email">Digite o n° do Cabo</label>
-      <input type="text" class="form-control"  name="cabo" placeholder="Pesquisa"  required >
+      <label for="email">Digite o n° do Circuito</label>
+      <input type="text" class="form-control"  name="ccto" placeholder="Pesquisa"  required >
     </div>
     
     
@@ -102,14 +102,14 @@ function confirmacao(id) {
   <table class="table table-hover" id="myTable">
     <thead>
       <tr >
-        <th>CABO</th>
-        <th>EQUIPAMENTO ORIGEM</th>
-        <th>RACK ORIGEM</th>
-        <th>EQUIPAMENTO DESTINO</th>
-        <th>RACK DESTINO</th>
-        <th>CLIENTE</th>
-        <th>OBS</th>
-        <th>DATA</th>
+        
+        <th>CIRCUITO</th>
+        <th>RACK</th>
+        <th>QUADRO</th>
+        <th>TENSÃO</th>
+        <th>AMPERAGEM</th>
+        <th>OCUPADO</th>
+        <th>OBSERVAÇÃO</th>
         <th></th>
         <th></th>
 
@@ -121,8 +121,8 @@ function confirmacao(id) {
   <?php
 if (isset($_POST ['submit']) )
 {
-$busca = $_POST['cabo'];
-$sql = mysql_query ("select * from cabos   where cabo = '".$busca."'  order by cabo;" );
+$busca = $_POST['ccto'];
+$sql = mysql_query ("select * from map2   where ccto = '".$busca."'  order by ccto;" );
 
 
 
@@ -133,24 +133,25 @@ if (mysql_num_rows($sql) > 0)
 
 {
   while ($dado = mysql_fetch_assoc($sql )){
+    $ccto = $dado ["ccto"];
 ?>
+
+      
     <tbody>
       <tr class="success">
-        <?php $id = $dado ["id"]; ?>
-      <td> <?php echo $dado ["cabo"];  ?></td>
-<td> <?php echo $dado ["origem"];  ?></td>
-<td> <?php echo $dado ["rack_origem"];  ?></td>
-<td> <?php echo $dado ["destino"];  ?></td>
-<td> <?php echo $dado ["rack_destino"];  ?></td>
- <td> <?php echo $dado ["cliente"];  ?></td>
- <td> <?php echo $dado ["obs"];  ?></td>
-  <td> <?php echo $dado ["data"];  ?></td>
-  <td><?php if($_SESSION["acesso"] == 'CABO' ){?> <a class="btn btn-primary btn-xs active" href='editar_cabos.php?id=<?php echo $id ?>'>EDITAR</a><?php } ?></td>
-  <td> <a href="javascript:func()"
-onclick="confirmacao('<?php echo $id;?>')" class="btn btn-danger btn-xs active" role="button" aria-pressed="true">Deletar</a></td>
+  <td> <?php echo $dado ["ccto"];  ?></td>
+  <td> <?php echo $dado ["rack"];  ?></td>
+  <td> <?php echo $dado ["quadro"];  ?></td>
+  <td> <?php echo $dado ["tensao"];  ?></td>
+  <td> <?php echo $dado ["amp"];  ?></td>
+  <td> <?php echo $dado ["ocupado"];  ?></td>
+  <td> <?php echo $dado ["obs"];  ?></td>
+  
+  <td><?php ?> <a class="btn btn-primary btn-xs active" href='editar_ele.php?id=<?php echo $ccto ?>'>EDITAR</a></td>
+  <td> <a href="javascript:func()" onclick="confirmacao('<?php echo $ccto;?>')" class="btn btn-danger btn-xs active" role="button" aria-pressed="true">Deletar</a></td><?php } ?>
 
 
-<?php } } }?>
+<?php } } ?>
 
 
 
@@ -161,4 +162,5 @@ onclick="confirmacao('<?php echo $id;?>')" class="btn btn-danger btn-xs active" 
 
 </body>
 </html>
+
 

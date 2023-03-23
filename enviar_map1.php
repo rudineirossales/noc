@@ -40,7 +40,7 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 <script type="text/javascript">
 function saidasuccessfully()
 {
-  setTimeout("window.location='cabo.php'",3000);
+  setTimeout("window.location='map1.php'",3000);
   
   
 }
@@ -72,14 +72,22 @@ function saidasuccessfully()
 <?php
 
 $cabo =$_POST['cabo'];
-
-$origem =$_POST['origem'];
-$rack_origem =$_POST['rack_destino'];
-$destino =$_POST['destino'];
-$rack_destino =$_POST['rack_destino'];
-$cliente =$_POST['cliente'];
+$local =$_POST['local'];
+$fila =$_POST['fila'];
+$switch =$_POST['switch'];
+$rack_ori =$_POST['rack_ori'];
+$eqp_origem =$_POST['eqp_ori'];
+$porta_ori =$_POST['porta_ori'];
+$cp =$_POST['cp'];
+$pp =$_POST['pp'];
+$rack_dest =$_POST['rack_dest'];
+$eqp_dest =$_POST['eqp_dest'];
+$porta_dest =$_POST['porta_dest'];
+$manobra =$_POST['manobra'];
+$servidor =$_POST['servidor'];
 $midia =$_POST['midia'];
 $obs =$_POST['obs'];
+$idcross =$_POST['idcross'];
 
 
 
@@ -88,9 +96,10 @@ $obs =$_POST['obs'];
 
 
 
-$query = "insert into cabos (cabo,origem,destino,midia,cliente,obs,data,rack_origem,rack_destino)";
 
-$query.= "values ('$cabo','$origem','$destino','$midia','$cliente','$obs',NOW(),'$rack_origem','$rack_destino')";
+$query = "insert into map1 (cabo,local,fila,rack_ori,eqp_origem,porta_ori,cp,pp,rack_dest,eqp_dest,porta_dest,manobra,servidor,obs,data,midia,idcross)";
+
+$query.= "values ('$cabo','$local','$fila','$rack_ori','$eqp_origem','$porta_ori','$cp','$pp','$rack_dest','$eqp_dest','$porta_dest','$manobra','$servidor','$obs',NOW(),'$midia','$idcross')";
 
 
 

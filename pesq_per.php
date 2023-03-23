@@ -126,8 +126,8 @@ function loginsuccessfully()
          <i class="fa fa-calendar">
          </i>
         </div>
-        <input class="form-control" id="date" name="date" placeholder="DE" type="text" required/>
-        <input class="form-control" id="date2" name="date2" placeholder="ATÉ" type="text" required/>
+        <input class="form-control" id="date" name="date" placeholder="DE"  autocomplete="off" type="text" required/>
+        <input class="form-control" id="date2" name="date2" placeholder="ATÉ"  autocomplete="off" type="text" required/>
        </div>
       </div>
      </div>
@@ -187,12 +187,14 @@ function loginsuccessfully()
       <tr >
        
         <th>CABO</th>
-        <th>ORIGEM</th>
-        <th>DESTINO</th>
+        <th>EQUIPAMENTO ORIGEM</th>
+        <th>RACK ORIGEM</th>
+        <th>EQUIPAMENTO DESTINO</th>
+        <th>RACK DESTINO</th>
          <th>CLIENTE</th>
         <th>OBS</th>
          <th>DATA</th>
-        <th>DELETAR</th>
+       
    
         
         
@@ -227,12 +229,14 @@ if (mysql_num_rows($sql) > 0)
       <?php $id = $dado ["id"]; ?> 
 <td> <?php echo $dado ["cabo"];  ?></td>
 <td> <?php echo $dado ["origem"];  ?></td>
+<td> <?php echo $dado ["rack_origem"];  ?></td>
 <td> <?php echo $dado ["destino"];  ?></td>
+<td> <?php echo $dado ["rack_destino"];  ?></td>
  <td> <?php echo $dado ["cliente"];  ?></td>
 <td> <?php echo $dado ["obs"];  ?></td>
 <td> <?php echo $dado ["data"];  ?></td>
 
-<td><?php if($_SESSION["acesso"] == 'CABO' ){?> <a href='del.php?id=<?php echo $id ?>'>DELETAR</a><?php } ?></td>
+
 
 
 

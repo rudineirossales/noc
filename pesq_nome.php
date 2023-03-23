@@ -96,13 +96,14 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
     <thead>
       <tr >
         <th>CABO</th>
-        <th>ORIGEM</th>
-        <th>DESTINO</th>
+        <th>EQUIPAMENTO ORIGEM</th>
+        <th>RACK ORIGEM</th>
+        <th>EQUIPAMENTO DESTINO</th>
+        <th>RACK DESTINO</th>
         <th>CLIENTE</th>
         <th>OBS</th>
         <th>DATA</th>
-        <th>DELETAR</th>
-        <th>EDITAR</th>
+       
 
       
        
@@ -129,13 +130,14 @@ if (mysql_num_rows($sql) > 0)
       <tr class="success">
             <?php $id = $dado ["id"]; ?> 
       <td> <?php echo $dado ["cabo"];  ?></td>
-<td> <?php echo $dado ["origem"];  ?></td>
+      <td> <?php echo $dado ["origem"];  ?></td>
+<td> <?php echo $dado ["rack_origem"];  ?></td>
 <td> <?php echo $dado ["destino"];  ?></td>
+<td> <?php echo $dado ["rack_destino"];  ?></td>
  <td> <?php echo $dado ["cliente"];  ?></td>
  <td> <?php echo $dado ["obs"];  ?></td>
   <td> <?php echo $dado ["data"];  ?></td>
-  <td><?php if($_SESSION["acesso"] == 'CABO' ){?> <a href='del.php?id=<?php echo $id ?>'>DELETAR</a><?php } ?></td>
-  <td><?php if($_SESSION["acesso"] == 'CABO' ){?> <a href='editar_cabos.php?id=<?php echo $id ?>'>EDITAR</a><?php } ?></td>
+  
 
 
 <?php } } }?>

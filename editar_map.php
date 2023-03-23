@@ -21,14 +21,14 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 <head>
 <link rel="icon" href="apa.jpg">
 
-<link rel="icon" href="img/logo_oi.ico">
+<link rel="icon" href="img/apa.png">
 
 <script language="Javascript">
 function confirmacao(id) {
      var resposta = confirm("Deseja remover esse registro?");
  
      if (resposta == true) {
-          window.location.href = "del.php?id="+id;
+          window.location.href = "del_map.php?cabo="+id;
      }
 }
 </script>
@@ -58,7 +58,7 @@ function confirmacao(id) {
 </head>
 <body>
    <p  style="font-size: 12px;"><i><strong>© Desenvolvimento Rudinei Rossales  </strong></i></p>
-<div class="navbar navbar-inverse navbar">
+<div class="navbar navbar-inverse navbar" style="background-image: url('img/buss.jpg');>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -84,10 +84,10 @@ function confirmacao(id) {
 
 <br>
 
-<div class="container">
+<div>
 
   
-  <form class="form-inline" role="form"  method="POST" action="pesq_cabo.php"  style="margin-left:10%;">
+  <form class="form-inline" role="form"  method="POST" action="editar_map.php"  style="margin-left:10%;">
     <div class="form-group">
       <label for="email">Digite o n° do Cabo</label>
       <input type="text" class="form-control"  name="cabo" placeholder="Pesquisa"  required >
@@ -102,14 +102,24 @@ function confirmacao(id) {
   <table class="table table-hover" id="myTable">
     <thead>
       <tr >
-        <th>CABO</th>
-        <th>EQUIPAMENTO ORIGEM</th>
+        
+        <th>LOCAL</th>
+        <th>FILA</th>
         <th>RACK ORIGEM</th>
-        <th>EQUIPAMENTO DESTINO</th>
+        <th>EQP ORIGEM</th>
+        <th>PORTA ORIGEM</th>
+        <th>EQP DESTINO</th>
         <th>RACK DESTINO</th>
+        
+        <th>PORTA DESTINO</th>
+        <th>CP</th>
+        <th>PP</th>
+        <th>CABO</th>
+        <th>ID CROSS</th>
         <th>CLIENTE</th>
+        <th>MIDIA</th>
+        <th>MANOBRA</th>
         <th>OBS</th>
-        <th>DATA</th>
         <th></th>
         <th></th>
 
@@ -122,7 +132,7 @@ function confirmacao(id) {
 if (isset($_POST ['submit']) )
 {
 $busca = $_POST['cabo'];
-$sql = mysql_query ("select * from cabos   where cabo = '".$busca."'  order by cabo;" );
+$sql = mysql_query ("select * from map1   where cabo = '".$busca."'  order by cabo;" );
 
 
 
@@ -133,24 +143,34 @@ if (mysql_num_rows($sql) > 0)
 
 {
   while ($dado = mysql_fetch_assoc($sql )){
+    $cabo = $dado ["cabo"];
 ?>
+
+      
     <tbody>
       <tr class="success">
-        <?php $id = $dado ["id"]; ?>
-      <td> <?php echo $dado ["cabo"];  ?></td>
-<td> <?php echo $dado ["origem"];  ?></td>
-<td> <?php echo $dado ["rack_origem"];  ?></td>
-<td> <?php echo $dado ["destino"];  ?></td>
-<td> <?php echo $dado ["rack_destino"];  ?></td>
- <td> <?php echo $dado ["cliente"];  ?></td>
- <td> <?php echo $dado ["obs"];  ?></td>
-  <td> <?php echo $dado ["data"];  ?></td>
-  <td><?php if($_SESSION["acesso"] == 'CABO' ){?> <a class="btn btn-primary btn-xs active" href='editar_cabos.php?id=<?php echo $id ?>'>EDITAR</a><?php } ?></td>
+  <td> <?php echo $dado ["local"];  ?></td>
+  <td> <?php echo $dado ["fila"];  ?></td>
+  <td> <?php echo $dado ["rack_ori"];  ?></td>
+  <td> <?php echo $dado ["eqp_origem"];  ?></td>
+  <td> <?php echo $dado ["porta_ori"];  ?></td>
+  <td> <?php echo $dado ["eqp_dest"];  ?></td>
+  <td> <?php echo $dado ["rack_dest"];  ?></td>
+  <td> <?php echo $dado ["porta_dest"];  ?></td>
+  <td> <?php echo $dado ["cp"];  ?></td>
+  <td> <?php echo $dado ["pp"];  ?></td>
+  <td> <?php echo $dado ["cabo"];  ?></td>
+  <td> <?php echo $dado ["idcross"];  ?></td>
+  <td> <?php echo $dado ["servidor"];  ?></td>
+  <td> <?php echo $dado ["midia"];  ?></td>
+  <td> <?php echo $dado ["manobra"];  ?></td>
+  <td> <?php echo $dado ["obs"];  ?></td>
+  <td><?php ?> <a class="btn btn-primary btn-xs active" href='editar_maps2.php?id=<?php echo $cabo ?>'>EDITAR</a><?php } ?></td>
   <td> <a href="javascript:func()"
-onclick="confirmacao('<?php echo $id;?>')" class="btn btn-danger btn-xs active" role="button" aria-pressed="true">Deletar</a></td>
+onclick="confirmacao('<?php echo $cabo;?>')" class="btn btn-danger btn-xs active" role="button" aria-pressed="true">Deletar</a></td>
 
 
-<?php } } }?>
+<?php } } ?>
 
 
 
@@ -161,4 +181,5 @@ onclick="confirmacao('<?php echo $id;?>')" class="btn btn-danger btn-xs active" 
 
 </body>
 </html>
+
 

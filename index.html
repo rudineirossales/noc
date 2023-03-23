@@ -1,99 +1,56 @@
-
-
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-
-<link rel="icon" href="img/icon.ico">
-	
-
-  <title>NOC</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
- <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-
-
-<script src="js/jquery.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-
-  
-
-
-
-
-  <style>
-  
- body{
-  background: url(img/dc.jpg) no-repeat;
-  background-size: cover;
-}
- 
-
-
- 
-  #teste{background:white;padding:5%; border: solid 2px black;margin-top: 14%; }
-  
-  
-    .btn
-    {
-
-      background: #F97220;
-    }
-    .btn:hover
-    {
-
-      background: #CE18F5;
-      color:black;
-    }
-  </style>
-</head>
-<body>
-
-
-
-
-<div class="container text-center">
-  <div class="row content">
-
-  
-   
-    <div class="col-sm-3 text-center col-md-offset-4" id="teste" >
-
-     <form method="post" action="autenticacao.php">
-
-    <div class="form-group">
-      <label for="usr">Login:</label>
-      <input type="text" class="form-control" id="log" name="log">
-    </div>
-    <div class="form-group">
-      <label for="pwd">Senha:</label>
-      <input type="password" class="form-control" id="senha" name="senha"><br>
-      <button type="submit" value="Logar" class="btn btn-default"> <strong>Logar</strong> </button>
-    </div>
-
-     <img src="img/oi.png" style="width: 70px; height: 70px" >
-
-  </form>
-
-   </div>
-
-</div>
- <!--<footer class="container-fluid " style="color:white; ">
-  <p style="margin-right: 9%;">Sistema desenvolvido por Rudinei Rossales  </p>
-</footer>-->
-
-
-<footer class="container-fluid" style="background: white;margin-top: 4%; border: solid black 2px;">
-  <p style="margin-right:9%; "><strong>© Desenvolvimento <a class="LI-simple-link" href='https://br.linkedin.com/in/rudineigti?trk=profile-badge'>Rudinei Feijó Rossales</a>  </strong></p>
-</footer>
-
-</body>
+<html>
+  <head>
+    <link rel="icon" href="img/apa.png">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Main CSS-->
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- Font-icon css-->
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>ApaNet</title>
+  </head>
+  <body>
+    <section class="material-half-bg">
+      <div class="cover"></div>
+    </section>
+    <section class="login-content">
+      <div class="logo">
+        <h1>Grupo Apa</h1>
+      </div>
+      <div class="login-box">
+        <form class="login-form" action="autenticacao.php" name="seachform" method="post" >
+          <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>LOGAR</h3>
+          <div class="form-group">
+            <label class="control-label">USUÁRIO</label>
+            <input class="form-control" type="text" name="log" placeholder="Usuário" autofocus>
+          </div>
+          <div class="form-group">
+            <label class="control-label">SENHA</label>
+            <input class="form-control" name="senha" type="password" placeholder="Senha">
+          </div>
+         
+          <div class="form-group btn-container">
+            <button class="btn btn-primary btn-block"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button><br></span>  <a  href="https://www.linkedin.com/in/rudineigti"  target="_blank"><img src="img/in.png" alt="Smiley face" height="30" width="35" style="margin-left:45%;"></a>
+          </div>
+        </form>
+        
+      </div>
+    </section>
+    <!-- Essential javascripts for application to work-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+    <!-- The javascript plugin to display page loading on top-->
+    <script src="js/plugins/pace.min.js"></script>
+    <script type="text/javascript">
+      // Login Page Flipbox control
+      $('.login-content [data-toggle="flip"]').click(function() {
+      	$('.login-box').toggleClass('flipped');
+      	return false;
+      });
+    </script>
+  </body>
 </html>
-

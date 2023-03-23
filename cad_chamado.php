@@ -1,4 +1,4 @@
-﻿
+
 <?php
 include "coon.php";
 
@@ -25,7 +25,8 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 
 
 
-<link rel="icon" href="img/icon.ico">
+<link rel="icon" href="img/apa.png
+">
 
 
 
@@ -57,7 +58,7 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
  
-<link rel="icon" href="img/icon.ico">
+<link rel="icon" href="img/apa.png">
 
    <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
@@ -71,6 +72,9 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
  
 
   
+
+
+
   <script type="text/javascript" src="jquery-3.1.1.min.js"></script>
 <script type="text/javascript" src="jquery.maskedinput.js"></script>
 <script type="text/javascript" src="validacao.js"></script>
@@ -91,7 +95,7 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 
 <p  style="font-size: 12px;"><i><strong>© Desenvolvimento Rudinei Rossales  </strong></i></p>
 
-  <div class="navbar navbar-inverse navbar">
+  <div class="navbar navbar-inverse navbar" style="background-image: url('img/buss.jpg');>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -113,64 +117,85 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 
         </div>
     </div>
-<div class="container">
+<div >
 
 
-<div class="row content">
+<div class="row content" style="margin-left:30%">
 
 
-    <div class="col-sm-10 "  >
+    <div class="col-sm-6"  >
     
     <div id="teste">
-  <form class="form" role="form" name="seachform" method="post" action="enviar_cabo.php " enctype="multipart/form-data">
-
-    <div class="form-group">
-
-       <label for="email">CABO:</label>
-      <input type="text" class="form-control"  name="cabo" required >
+  <form class="form" role="form" name="seachform" method="post" action="enviar_chamado.php " enctype="multipart/form-data">
+  <div class="form-group">
+     <label for="pwd">RITM:</label>
+      <input type="text" class="form-control"  name="ritm" required>
     </div>
- 
-       <div class="form-group">
-     <label for="pwd">EQUIPAMENTO ORIGEM:</label>
-      <input type="text" class="form-control"  name="origem" required>
- 
-    </div>
-
-    <div class="form-group">
-     <label for="pwd">RACK ORIGEM:</label>
-      <input type="text" class="form-control"  name="rack_origem" required>
- 
-    </div>
-
+    <div class="row">
+   <label  for="data" class="col-sm-6">
+      PERÍODO
+      </label>
     
-       <div class="form-group">
-     <label for="pwd">EQUIPAMENTO DESTINO:</label>
-      <input type="text" class="form-control"  name="destino" required>
+     <div class="form-group ">
+      
+      <div class="col-sm-8">
+       <div class="input-group">
+        
+        <input class="form-control" id="date" name="date" placeholder="Abertura" type="text"  autocomplete="off" required/>
+        <input class="form-control" id="date2" name="date2" placeholder="Encerramento"  autocomplete="off" type="text" required/>
+       </div>
+      </div>
+     </div>
+    
+  
+   
+  </div>
+
+</div>
+
+
+<!-- Extra JavaScript/CSS added manually in "Settings" tab -->
+<!-- Include jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+ $(document).ready(function(){
+  var date_input=$('input[name="date"]'); //our date input has the name "date"
+  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+  date_input.datepicker({
+   format: 'yyyy-mm-dd',
+   container: container,
+   todayHighlight: true,
+   autoclose: true,
+  })
+ })
+</script>
+<script>
+ $(document).ready(function(){
+  var date_input=$('input[name="date2"]'); //our date input has the name "date"
+  var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+  date_input.datepicker({
+   format: 'yyyy-mm-dd',
+   container: container,
+   todayHighlight: true,
+   autoclose: true,
+   orientation: 'top',
+  })
+ })
+</script>
+    
+       <div class="form-group"> <br/>
+    <label for="email">DESCRIÇÃO: </label>
+  <textarea class="form-control" rows="5" id="desc" name="desc" maxlength="1000" ></textarea>
     </div>
 
     <div class="form-group">
-     <label for="pwd">RACK DESTINO:</label>
-      <input type="text" class="form-control"  name="rack_destino" required>
- 
-    </div>
-      <div class="form-group">
-     <label for="pwd">CLIENTE:</label>
-      <input type="text" class="form-control"  name="cliente" required>
-    </div>
-   <div class="form-group">
-     <label for="email">MÍDIA:</label>  
-        <select class="form-control "  name="midia">
-            <option value="RG45">  RG45 </option>
-            <option value="FIBRA">  FIBRA </option>
-     
-
-        </select>
-
-    </div>
-
-       <div class="form-group">
-    <label for="email">OBS: </label>
-  <textarea class="form-control" rows="5" id="obs" name="obs" maxlength="300" placeholder="Máximo 300 caracteres"></textarea>
+        <label for="formFile" class="form-label">LPU</label>
+        <input class="form-control" type="file" id="lpu" name="lpu" >
     </div>
 
      <br><br><button type="submit" value="Enviar" class="btn btn-danger" id="enviar"> <strong>Enviar</strong> </button><br><br><br><br>

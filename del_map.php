@@ -13,15 +13,7 @@ include "coon.php";
 //if(isset($_FILES['arquivo'],$_FILES['arquivo2'])) {
   
   
-session_start();
 
-if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
-{
-  header("Location: index.html");
-  exit;
-  
-  
-}
 
   
   
@@ -40,7 +32,7 @@ if(!isset($_SESSION["login"]) &&  !isset($_SESSION["senha"]) )
 <script type="text/javascript">
 function saidasuccessfully()
 {
-  setTimeout("window.location='cabo.php'",3000);
+  setTimeout("window.location='editar_map.php'",3000);
   
   
 }
@@ -71,15 +63,7 @@ function saidasuccessfully()
 
 <?php
 
-$cabo =$_POST['cabo'];
-
-$origem =$_POST['origem'];
-$rack_origem =$_POST['rack_destino'];
-$destino =$_POST['destino'];
-$rack_destino =$_POST['rack_destino'];
-$cliente =$_POST['cliente'];
-$midia =$_POST['midia'];
-$obs =$_POST['obs'];
+$cabo =$_GET['cabo'];
 
 
 
@@ -88,9 +72,11 @@ $obs =$_POST['obs'];
 
 
 
-$query = "insert into cabos (cabo,origem,destino,midia,cliente,obs,data,rack_origem,rack_destino)";
 
-$query.= "values ('$cabo','$origem','$destino','$midia','$cliente','$obs',NOW(),'$rack_origem','$rack_destino')";
+
+$query = "delete from map1 where cabo = '$cabo'";
+
+
 
 
 
@@ -102,9 +88,11 @@ if($sql )
 {
   
   
-    echo ' <h2>ENVIADA COM SUCESSO!';
+    echo ' <h2>DELETADA COM SUCESSO!';
   
   echo "<script>saidasuccessfully()</script>";
+
+ 
   
 
   
@@ -112,7 +100,7 @@ if($sql )
 else
 {
   
-  echo "<h2>Erro no cadastro!</h2> ";
+  echo "<h2>Erro !</h2> ";
   
 }
 

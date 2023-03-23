@@ -32,7 +32,7 @@ include "coon.php";
 <script type="text/javascript">
 function saidasuccessfully()
 {
-  setTimeout("window.location='cabo.php'",3000);
+  setTimeout("window.location='pesq_cabo.php'",3000);
   
   
 }
